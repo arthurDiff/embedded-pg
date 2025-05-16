@@ -1,6 +1,7 @@
 [package]
 authors = ["me"]
 name = "embedded-pg"
+readme = "README.md"
 version = "0.1.0"
 edition = "2024"
 
