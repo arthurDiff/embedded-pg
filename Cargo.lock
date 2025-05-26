@@ -92,6 +92,7 @@ dependencies = [
  "cortex-m-rt",
  "cortex-m-semihosting",
  "panic-halt",
+ "panic-semihosting",
  "tm4c123x",
  "tm4c123x-hal",
 ]
@@ -116,6 +117,16 @@ name = "panic-halt"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a513e167849a384b7f9b746e517604398518590a9142f4846a32e3c2a4de7b11"
+
+[[package]]
+name = "panic-semihosting"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ee8a3e1233d9073d76a870223512ce4eeea43c067a94a445c13bd6d792d7b1ab"
+dependencies = [
+ "cortex-m",
+ "cortex-m-semihosting",
+]
 
 [[package]]
 name = "proc-macro2"
