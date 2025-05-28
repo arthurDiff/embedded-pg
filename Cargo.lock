@@ -95,6 +95,7 @@ dependencies = [
  "panic-semihosting",
  "tm4c123x",
  "tm4c123x-hal",
+ "volatile-register",
 ]
 
 [[package]]

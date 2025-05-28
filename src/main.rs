@@ -21,15 +21,15 @@
 
 use panic_semihosting as _;
 
+use cortex_m_rt::entry;
 #[allow(unused_imports)]
 use cortex_m_semihosting::debug;
-use cortex_m_rt::entry;
 
 #[entry]
-fn main()->! {
+fn main() -> ! {
     let pie = "pizza";
 
-    assert_eq!(pie, "blueberry"); 
-    
-    loop{}
+    assert_eq!(pie, "blueberry");
+
+    loop {}
 }
