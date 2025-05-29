@@ -3,10 +3,13 @@
 
 use panic_halt as _;
 
-use cortex_m::{ peripheral::syst::SystClkSource};
-use cortex_m_rt::{entry, exception};
-use cortex_m_semihosting::{debug, hio::{self, HostStream}};
 use core::fmt::Write;
+use cortex_m::peripheral::syst::SystClkSource;
+use cortex_m_rt::{entry, exception};
+use cortex_m_semihosting::{
+    debug,
+    hio::{self, HostStream},
+};
 
 #[entry]
 fn main() -> ! {
@@ -21,24 +24,23 @@ fn main() -> ! {
     syst.enable_counter();
     syst.enable_interrupt();
 
-    loop{}
+    loop {}
 }
 
 #[exception]
-fn SysTick(){
-    static mut COUNT:u32 = 0;
+fn SysTick() {
+    static mut COUNT: u32 = 0;
     static mut STDOUT: Option<HostStream> = None;
 
     *COUNT += 1;
 
     // Lazy initialization
-    if STDOUT.is_none(){
-        *STDOUT = hio::hstdout().ok(); 
+    if STDOUT.is_none() {
+        *STDOUT = hio::hstdout().ok();
     }
 
-
-    if let Some(hstdout) = STDOUT{
-        write!(hstdout, "{}\n", *COUNT).ok();
+    if let Some(hstdout) = STDOUT {
+        writeln!(hstdout, "{}", *COUNT).ok();
     }
 
     // IMPORTANT omit this `if` block if running on real hard ware or your debugger will end in an inconsistent state
@@ -46,15 +48,14 @@ fn SysTick(){
         // exit from qemu
         debug::exit(debug::EXIT_SUCCESS);
     }
-
 }
 
 #[exception]
-unsafe fn DefaultHandler(_irqn: i16){
-    // irqn is error code 
+unsafe fn DefaultHandler(_irqn: i16) {
+    // irqn is error code
 }
 
 // #[interrupt]
 // fn TIM2(){
-//    // 
+//    //
 // }
