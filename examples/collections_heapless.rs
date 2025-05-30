@@ -13,3 +13,8 @@ fn main() -> ! {
     assert_eq!(x.pop(), Some(42));
     loop {}
 }
+
+mod sealed {
+    pub trait Sealed {}
+}
+pub trait Test: sealed::Sealed {}
